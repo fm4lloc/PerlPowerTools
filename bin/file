@@ -120,7 +120,7 @@ GetOptions(
 
 # the names of the files are in $fileList.
 if ($fileList) {
-    my $fileListFH = new FileHandle "< $fileList" or
+    my $fileListFH = FileHandle->new "< $fileList" or
       die "$F: $fileList: $!\n";
     unshift(@ARGV,<$fileListFH>);
     $fileListFH->close();
@@ -148,7 +148,7 @@ print STDERR "Using magic file $magicFile\n" if $checkMagic;
 
 # $MF is the magic file state: [ filehandle, buffered last line, line num ]
 my $MF = [];
-$$MF[0] = new FileHandle "< $magicFile" or die "$magicFile: $!\n";
+$$MF[0] = FileHandle->new "< $magicFile" or die "$magicFile: $!\n";
 $$MF[1] = undef;
 $$MF[2] = 0;
 readMagicEntry(\@magic,$MF);
