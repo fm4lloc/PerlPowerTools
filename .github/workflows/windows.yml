@@ -26,5 +26,9 @@ jobs:
                 cpan ExtUtils::MakeMaker
             - name: Perl version
               run: perl -V
-            - name: Install
+            - name: Install dependencies
               run: cpan .
+            - name: Run tests
+              run: |
+                perl Makefile.PL
+                make test
